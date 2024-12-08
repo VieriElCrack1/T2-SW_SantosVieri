@@ -23,6 +23,13 @@ public class MedicoController {
         return new ResponseEntity<>(medicoResponse, HttpStatus.OK);
     }
 
-    //buscar MEDICO
-
+    //buscar medicos
+    @GetMapping("/{id}")
+    public ResponseEntity<MedicoResponse> buscarMedico(@PathVariable("id") Integer idmedico) {
+        MedicoResponse response = medicoService.buscarMedico(idmedico);
+        if(response == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
