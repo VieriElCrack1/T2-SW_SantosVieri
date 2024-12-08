@@ -32,4 +32,7 @@ public class MedicoController {
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    //registrar medico
+
 }
