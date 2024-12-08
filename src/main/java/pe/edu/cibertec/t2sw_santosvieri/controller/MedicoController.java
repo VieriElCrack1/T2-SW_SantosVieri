@@ -62,5 +62,27 @@ public class MedicoController {
     }
 
     //actualizar medico
-    @PutMapping
+    @PutMapping("/{id}")
+    public ResponseEntity<Respuesta<MedicoResponse>> actualizarMedico(@PathVariable("id") Integer idmedico, @RequestBody MedicoRequest request) {
+        try {
+            MedicoResponse medico = medicoService.actualizarMedico(idmedico, request);
+            Respuesta<MedicoResponse> respuesta = Respuesta.<MedicoResponse>builder()
+                    .mensaje("Medico modificado exitosamente")
+                    .data(medico)
+                    .build();
+            return new ResponseEntity<>(respuesta, HttpStatus.OK);
+        }catch (DataAccessException e) {
+            Respuesta<MedicoResponse> respuesta = Respuesta.<MedicoResponse>builder()
+                    .mensaje("No se pudo acceder a la base de datos")
+                    .errorMensaje(HttpStatus.INTERNAL_SERVER_ERROR.name())
+                    .build();
+            return new ResponseEntity<>(respuesta, HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch (Exception e) {
+            Respuesta<MedicoResponse> respuesta = Respuesta.<MedicoResponse>builder()
+                    .mensaje("No se realizo la modificacion del medico")
+                    .errorMensaje(HttpStatus.BAD_REQUEST.name())
+                    .build();
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
