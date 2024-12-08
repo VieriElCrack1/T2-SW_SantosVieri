@@ -22,4 +22,7 @@ public class MedicoController {
         List<MedicoResponse> medicoResponse = medicoService.listadoMedico();
         return new ResponseEntity<>(medicoResponse, HttpStatus.OK);
     }
+
+    //buscar MEDICO
+
 }
