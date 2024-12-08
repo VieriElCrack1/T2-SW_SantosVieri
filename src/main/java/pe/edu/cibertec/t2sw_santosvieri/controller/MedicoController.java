@@ -11,6 +11,6 @@ public class MedicoController {
 
     private final IMedicoService medicoService;
 
-    //LISTADO
+    //LISTADO MEDICO
 
 }
