@@ -8,5 +8,6 @@ import java.util.List;
 public interface IMedicoService {
     List<MedicoResponse> listadoMedico();
     MedicoResponse guardarMedico(MedicoRequest request);
+    MedicoResponse actualizarMedico(int idmedico, MedicoRequest request);
     MedicoResponse buscarMedico(int idmedico);
 }

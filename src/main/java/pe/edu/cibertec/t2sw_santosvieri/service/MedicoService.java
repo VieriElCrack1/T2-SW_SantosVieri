@@ -24,7 +24,15 @@ public class MedicoService implements IMedicoService{
     @Override
     public MedicoResponse guardarMedico(MedicoRequest request) {
         Medico medico = new Medico();
-        medico.setIdmedico(request.getIdmedico());
+        medico.setNommedico(request.getNommedico());
+        medico.setApemedico(request.getApemedico());
+        medico.setFechanacmedico(request.getFechanacmedico());
+        return convertirMedicoResponse(medicoRepository.save(medico));
+    }
+
+    @Override
+    public MedicoResponse actualizarMedico(int idmedico, MedicoRequest request) {
+        Medico medico = medicoRepository.findById(idmedico).orElseThrow(() -> new RuntimeException("No se encontro al medico"));
         medico.setNommedico(request.getNommedico());
         medico.setApemedico(request.getApemedico());
         medico.setFechanacmedico(request.getFechanacmedico());

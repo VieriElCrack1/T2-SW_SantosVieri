@@ -62,4 +62,5 @@ public class MedicoController {
     }
 
     //actualizar medico
+    @PutMapping
 }
