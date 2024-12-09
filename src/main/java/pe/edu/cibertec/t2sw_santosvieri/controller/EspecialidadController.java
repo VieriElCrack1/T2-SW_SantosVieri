@@ -34,4 +34,6 @@ public class EspecialidadController {
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    //registrar especialidad
 }
