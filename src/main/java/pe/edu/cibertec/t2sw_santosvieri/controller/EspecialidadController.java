@@ -59,4 +59,6 @@ public class EspecialidadController {
             return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
         }
     }
+
+    //actualizar especialidad
 }
