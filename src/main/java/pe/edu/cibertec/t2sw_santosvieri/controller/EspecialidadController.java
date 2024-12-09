@@ -20,5 +20,10 @@ public class EspecialidadController {
     private final IEspecialidadService especialidadService;
 
     //listado especialidades
+    @GetMapping
+    public ResponseEntity<List<EspecialidadResponse>> listaEspecialidad() {
+        return new ResponseEntity<>(especialidadService.listaEspecialidad(), HttpStatus.OK);
+    }
+
 
 }
