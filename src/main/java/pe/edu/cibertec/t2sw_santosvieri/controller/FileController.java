@@ -31,5 +31,13 @@ public class FileController {
     }
 
     //subir 3 archivos en simultaneo
-
+    @PostMapping("/archivos")
+    public ResponseEntity<String> guardarArchivos(@RequestParam("files") List<MultipartFile> files) {
+        try {
+            fileService.guardarArchivos(files);
+            return new ResponseEntity<>("Se guardo los archivos exitosamente", HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("No se guardo los archivos : " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }
