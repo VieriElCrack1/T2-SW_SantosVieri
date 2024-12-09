@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import pe.edu.cibertec.t2sw_santosvieri.service.IFileService;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/file")
@@ -27,4 +29,7 @@ public class FileController {
             return new ResponseEntity<>("No se subio el archivo : " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    //subir 3 archivos en simultaneo
+
 }
