@@ -28,7 +28,6 @@ public class EspecialidadService implements IEspecialidadService{
     @Override
     public EspecialidadResponse guardarEspecialidad(EspecialidadRequest request) {
         Especialidad especialidad = new Especialidad();
-        especialidad.setIdespecialidad(request.getIdespecialidad());
         especialidad.setTitulo(request.getTitulo());
         especialidad.setFuncion(request.getFuncion());
         especialidad.setFechgraduacion(request.getFechgraduacion());
