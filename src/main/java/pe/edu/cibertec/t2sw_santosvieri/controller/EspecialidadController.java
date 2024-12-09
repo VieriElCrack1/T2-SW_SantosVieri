@@ -61,4 +61,27 @@ public class EspecialidadController {
     }
 
     //actualizar especialidad
+    @PutMapping("/{id}")
+    public ResponseEntity<Respuesta<EspecialidadResponse>> actualizarEspecialidad(@PathVariable("id") Integer idespecialidad, @RequestBody EspecialidadRequest request) {
+        try{
+            EspecialidadResponse especialidad = especialidadService.actualizarEspecialidad(idespecialidad, request);
+            Respuesta<EspecialidadResponse> respuesta = Respuesta.<EspecialidadResponse>builder()
+                    .mensaje("Especialidad modificado exitosamente")
+                    .data(especialidad)
+                    .build();
+            return new ResponseEntity<>(respuesta, HttpStatus.CREATED);
+        }catch (DataAccessException e) {
+            Respuesta<EspecialidadResponse> respuesta = Respuesta.<EspecialidadResponse>builder()
+                    .mensaje("No se pudo acceder a la base de datos")
+                    .errorMensaje(HttpStatus.INTERNAL_SERVER_ERROR.name())
+                    .build();
+            return new ResponseEntity<>(respuesta, HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch (Exception e) {
+            Respuesta<EspecialidadResponse> respuesta = Respuesta.<EspecialidadResponse>builder()
+                    .mensaje("No se realizo la modificacion de especialidad")
+                    .errorMensaje(HttpStatus.BAD_REQUEST.name())
+                    .build();
+            return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
