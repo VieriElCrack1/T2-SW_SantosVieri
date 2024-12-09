@@ -11,15 +11,21 @@ import java.util.List;
 @Service
 public class FileService implements IFileService{
 
-    private final Path folder = Paths.get("archivo");
+    private final Path folderArchivo = Paths.get("archivo");
+    private final Path folderArchivos = Paths.get("archivos");
 
     @Override
     public void guardarArchivo(MultipartFile file) throws Exception {
-        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
-        if(file.getSize() <= 25000000 && (extension.equals("pdf") || extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("docx"))) {
-            Files.copy(file.getInputStream(), folder.resolve(file.getOriginalFilename()));
+        if(file.getSize() > 25000000) {
+            throw new RuntimeException("El maximo peso del archivo es 25MB");
         }
-        throw new RuntimeException("El maximo peso del archivo es 25MB");
+
+        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+        if (!(extension.equals("pdf") || extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("docx"))) {
+            throw new RuntimeException("La extension es invalida");
+        }
+
+        Files.copy(file.getInputStream(), folderArchivo.resolve(file.getOriginalFilename()));
     }
 
     @Override
@@ -29,7 +35,11 @@ public class FileService implements IFileService{
         }
 
         for (MultipartFile file : files) {
-            guardarArchivo(file);
+            cargarArchivos(file);
         }
+    }
+
+    private void cargarArchivos(MultipartFile file) throws Exception{
+        Files.copy(file.getInputStream(), folderArchivos.resolve(file.getOriginalFilename()));
     }
 }
