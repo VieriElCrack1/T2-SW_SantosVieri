@@ -12,7 +12,6 @@ import java.util.List;
 public class FileService implements IFileService{
 
     private final Path folderArchivo = Paths.get("archivo");
-    private final Path folderArchivos = Paths.get("archivos");
 
     @Override
     public void guardarArchivo(MultipartFile file) throws Exception {
@@ -35,11 +34,7 @@ public class FileService implements IFileService{
         }
 
         for (MultipartFile file : files) {
-            cargarArchivos(file);
+            guardarArchivo(file);
         }
-    }
-
-    private void cargarArchivos(MultipartFile file) throws Exception{
-        Files.copy(file.getInputStream(), folderArchivos.resolve(file.getOriginalFilename()));
     }
 }
