@@ -26,5 +26,12 @@ public class EspecialidadController {
     }
 
     //buscar especialidad
-
+    @GetMapping("/{id}")
+    public ResponseEntity<EspecialidadResponse> buscarEspecialidad(@PathVariable("id") Integer idespecialidad) {
+        EspecialidadResponse response = especialidadService.buscarEspecialidad(idespecialidad);
+        if(response == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
