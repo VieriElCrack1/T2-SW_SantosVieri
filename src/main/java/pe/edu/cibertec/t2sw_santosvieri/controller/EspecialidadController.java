@@ -25,5 +25,6 @@ public class EspecialidadController {
         return new ResponseEntity<>(especialidadService.listaEspecialidad(), HttpStatus.OK);
     }
 
+    //buscar especialidad
 
 }
