@@ -26,7 +26,7 @@ public class MedicoService implements IMedicoService{
         Medico medico = new Medico();
         medico.setNommedico(request.getNommedico());
         medico.setApemedico(request.getApemedico());
-        medico.setFechanacmedico(request.getFechanacmedico());
+        medico.setFechnacmedico(request.getFechanacmedico());
         return convertirMedicoResponse(medicoRepository.save(medico));
     }
 
@@ -35,7 +35,7 @@ public class MedicoService implements IMedicoService{
         Medico medico = medicoRepository.findById(idmedico).orElseThrow(() -> new RuntimeException("No se encontro al medico"));
         medico.setNommedico(request.getNommedico());
         medico.setApemedico(request.getApemedico());
-        medico.setFechanacmedico(request.getFechanacmedico());
+        medico.setFechnacmedico(request.getFechanacmedico());
         return convertirMedicoResponse(medicoRepository.save(medico));
     }
 
@@ -59,7 +59,7 @@ public class MedicoService implements IMedicoService{
                 .idmedico(medico.getIdmedico())
                 .nommedico(medico.getNommedico())
                 .apemedico(medico.getApemedico())
-                .fechanacmedico(medico.getFechanacmedico())
+                .fechanacmedico(medico.getFechnacmedico())
                 .build();
     }
 }

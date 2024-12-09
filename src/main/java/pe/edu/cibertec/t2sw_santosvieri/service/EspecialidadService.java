@@ -38,6 +38,17 @@ public class EspecialidadService implements IEspecialidadService{
     }
 
     @Override
+    public EspecialidadResponse actualizarEspecialidad(int idespecialidad, EspecialidadRequest request) {
+        Especialidad especialidad = especialidadRepository.findById(idespecialidad).orElseThrow(() -> new RuntimeException("No se encontro doctores con especialidades"));
+        especialidad.setTitulo(request.getTitulo());
+        especialidad.setFuncion(request.getFuncion());
+        especialidad.setFechgraduacion(request.getFechgraduacion());
+        Medico medico = medicoRepository.findById(request.getIdmedico()).orElseThrow(() -> new RuntimeException("No se encontro el medico"));
+        especialidad.setMedico(medico);
+        return convertirEspecialidadResponse(especialidadRepository.save(especialidad));
+    }
+
+    @Override
     public EspecialidadResponse buscarEspecialidad(int idespecialidad) {
         Especialidad especialidadBuscar = especialidadRepository.findById(idespecialidad).orElseThrow(() -> new RuntimeException("No se encontro doctores con especialidades"));
         return convertirEspecialidadResponse(especialidadBuscar);
@@ -67,7 +78,7 @@ public class EspecialidadService implements IEspecialidadService{
                 .idmedico(medico.getIdmedico())
                 .nommedico(medico.getNommedico())
                 .apemedico(medico.getApemedico())
-                .fechanacmedico(medico.getFechanacmedico())
+                .fechanacmedico(medico.getFechnacmedico())
                 .build();
     }
 }

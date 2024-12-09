@@ -15,7 +15,7 @@ public class Medico {
     private Integer idmedico;
     private String nommedico;
     private String apemedico;
-    private LocalDate fechanacmedico;
+    private LocalDate fechnacmedico;
 
     @OneToMany(mappedBy = "medico", fetch = FetchType.EAGER)
     private List<Especialidad> especialidadList;

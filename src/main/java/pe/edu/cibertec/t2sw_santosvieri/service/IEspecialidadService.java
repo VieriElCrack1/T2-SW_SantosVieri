@@ -8,5 +8,6 @@ import java.util.List;
 public interface IEspecialidadService {
     List<EspecialidadResponse> listaEspecialidad();
     EspecialidadResponse guardarEspecialidad(EspecialidadRequest request);
+    EspecialidadResponse actualizarEspecialidad(int idespecialidad,EspecialidadRequest request);
     EspecialidadResponse buscarEspecialidad(int idespecialidad);
 }
